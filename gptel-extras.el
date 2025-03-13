@@ -24,7 +24,6 @@
 (defun gptel-extras-select-model ()
   "Select and update the current gptel model."
   (interactive)
-  (require 'gptel)
   ;; The following code has been adapted from `gptel--infix-provider' and
   ;; allows the active backend model to be updated via completing-read
   ;; without using the transient-based `gptel-menu'. Consider updating this
