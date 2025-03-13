@@ -13,8 +13,8 @@
 (require 'gptel)
 
 ;;;###autoload
-(defun gptel-extras-buffer (arg)
-  "Switch to or start a gptel session; select a new model if ARG is non-nil."
+(defun gptel-extras-chat (arg)
+  "Switch to or start gptel chat session; select new model if ARG is non-nil."
   (interactive "P")
   (when arg
     (gptel-extras-select-model))
