@@ -23,10 +23,13 @@ question can't be answered with certainty, explain why and offer partial
 insights without overstating confidence."
   "System gptel directive for programming.")
 
-;; Use only the programming directive for now.
+;; Use only the programming directive for now. Need to set both
+;; `gptel-directives' and `gptel--system-message' since this package
+;; is loaded after `gptel' and `gptel--system-message' is set on load.
 (require 'gptel)
-(setq gptel-directives
-      `((default . ,gptel-extras-programming-directive)))
+(setq
+ gptel-directives `((default . ,gptel-extras-programming-directive))
+ gptel--system-message gptel-extras-programming-directive)
 
 ;;;###autoload
 (defun gptel-extras-chat (arg)
