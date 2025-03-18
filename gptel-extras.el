@@ -10,8 +10,6 @@
 
 ;;; Code:
 
-(require 'gptel)
-
 (defvar gptel-extras-programming-directive
   "Act as a highly-skilled software engineer, providing well-researched and
 up-to-date answers. Always be transparent about uncertainty: if your knowledge
@@ -24,6 +22,11 @@ while remaining clear, correct, and sufficient for the given question. If a
 question can't be answered with certainty, explain why and offer partial
 insights without overstating confidence."
   "System gptel directive for programming.")
+
+;; Use only the programming directive for now.
+(require 'gptel)
+(setq gptel-directives
+      `((default . ,gptel-extras-programming-directive)))
 
 ;;;###autoload
 (defun gptel-extras-chat (arg)
