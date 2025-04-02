@@ -24,6 +24,9 @@
    "why and offer partial insights without overstating confidence.")
   "System gptel directive for programming.")
 
+(defvar gptel-extras-chat-buffer-name "*gptel-chat*"
+  "Default buffer name used for gptel chat sessions.")
+
 ;; Use only the programming directive for now. Need to set both
 ;; `gptel-directives' and `gptel--system-message' since this package
 ;; is loaded after `gptel' and `gptel--system-message' is set on load.
@@ -38,7 +41,15 @@
   (interactive "P")
   (when arg
     (gptel-extras-select-model))
-  (call-interactively #'gptel))
+  (display-buffer (gptel (read-buffer
+                          "Create or choose gptel buffer: "
+                          gptel-extras-chat-buffer-name nil
+                          (lambda (b)
+                            (and-let* ((buf (get-buffer (or (car-safe b) b))))
+                              (buffer-local-value 'gptel-mode buf)))))
+                  gptel-display-buffer-action)
+  (message "Send your query with %s!"
+           (substitute-command-keys "\\[gptel-send]")))
 
 ;;;###autoload
 (defun gptel-extras-select-model ()
